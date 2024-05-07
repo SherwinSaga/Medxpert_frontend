@@ -6,7 +6,7 @@ function Navigation(){
             
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-8">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="public/medicine-symbol-svgrepo-com.svg" class="h-14" alt="MedXpert Logo" />
+            <img src="src/assets/medicine-symbol-svgrepo-com.svg" class="h-14" alt="MedXpert Logo" />
             <span class="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">MedXpert</span>
         </a>
 
