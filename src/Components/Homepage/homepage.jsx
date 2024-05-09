@@ -50,7 +50,7 @@ function Homepage() {
             <div className="flex justify-center p-10">
             <div className="flex flex-wrap gap-2 w-full justify-center">
               {currentItems.map(medicine => (
-                  <Cards medicine={medicine} />
+                  <Cards key={medicine.id} medicine={medicine} />
               ))}
             </div>
           </div>

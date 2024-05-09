@@ -1,8 +1,16 @@
 import "./cards.css";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Cards({ medicine }){
+
+    const navigate = useNavigate();
+
+    const handleclick = () => {
+      navigate("/medicine", {state: { medicine }})
+    }
+
     return (
         <Card style={{ width: '18rem', display: 'flex', flexDirection: 'column' }} className="cardDiv"> 
           <Card.Body style={{ flex: '1 0 auto' }}>
@@ -12,7 +20,7 @@ function Cards({ medicine }){
             </Card.Text>
           </Card.Body>
           <div className="pt-1" style={{ flexShrink: '0', padding: '10px 10px' }}>
-            <Button variant="primary" className="cardButton">Read More</Button>
+            <Button variant="primary" className="cardButton" onClick={handleclick}>Read More</Button>
           </div>
         </Card>
       );

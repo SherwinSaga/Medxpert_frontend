@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-rou
 import Login from './Components/LoginRegister/login';
 import Homepage from './Components/Homepage/homepage';
 import Reviews from './Components/ReviewPage/reviews';
+import Medicine_Card from './Components/Cards/medicine_card';
 function App() {
   return (
       <BrowserRouter>
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Login />} /> 
           <Route path="/homepage" element={<Homepage />} /> 
           <Route path="/reviews" element={<Reviews />} />
+          <Route path="/medicine" element={<Medicine_Card />} />
         </Routes>
 
       </BrowserRouter>
