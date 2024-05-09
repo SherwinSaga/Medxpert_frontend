@@ -1,5 +1,6 @@
-import Cards from "./cards";
-import Navigation from "./navigation";
+import Cards from "../Cards/cards";
+import Footer from "../HeaderFooter/footer";
+import Navigation from "../HeaderFooter/navigation";
 import { useState, useEffect } from "react";
 
 function Homepage() {
@@ -45,6 +46,7 @@ function Homepage() {
                   </button>
               ))}
           </div>
+          <Footer />
         </>
       );
     }
