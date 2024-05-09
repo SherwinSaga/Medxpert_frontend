@@ -48,7 +48,7 @@ function Navigation(){
           <Container fluid>
             <img src="src/assets/medicine-symbol-svgrepo-com.svg" class="h-16" alt="MedXpert Logo" />
             <Navbar.Brand className="navBrand" style={{ color: 'white' }}>MedXpert</Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Toggle aria-controls="navbarScroll" style={{ backgroundColor: 'white' }}/>
             <Navbar.Collapse id="navbarScroll">
               <Nav
                 className="me-auto my-2 my-lg-0"
