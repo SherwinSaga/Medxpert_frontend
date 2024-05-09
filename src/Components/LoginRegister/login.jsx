@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
-import axios from 'axios';
+
 
 
 function Login() {
@@ -22,7 +22,7 @@ function Login() {
         .then(response => response.json())
         .then(data => {
             if (data.message === "Login Success") {
-                navigate('/Homepage');
+                navigate('/homepage');
             } else {
                 alert('Invalid username or password');
             }

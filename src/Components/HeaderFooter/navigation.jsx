@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from 'react-bootstrap/Button';
+
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+import {  useNavigate } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import "./navigation.css";
@@ -14,13 +14,18 @@ function Navigation(){
     //if searchbar = null then do normal display     i.e - ibalhin ang hinimo na display sa homepage ngari
     //if current user is at home, display medicine
     //if current user is at reviews, display reviews
+    
+    const navigate = useNavigate();
+
 
     const handleclick1 = () => {
         console.log("home");
+        navigate('/homepage');
     }
 
     const handleclick2 = () => {
         console.log("Reviews");
+        navigate('/reviews');
     }
 
     const handleclick3 = () => {
@@ -34,7 +39,6 @@ function Navigation(){
     const handleclick5 = () => {
         console.log("Logo");
     }
-
 
 
 
@@ -56,15 +60,7 @@ function Navigation(){
                 <Nav.Link href="#action3" className="navLinks" style={{ color: 'white' }} onClick={handleclick3}>About</Nav.Link>
                 <Nav.Link href="#action4" className="navLinks" style={{ color: 'white' }} onClick={handleclick4}>Contact</Nav.Link>
               </Nav>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="outline-light">Search</Button>
-              </Form>
+              
             </Navbar.Collapse>
           </Container>
         </Navbar>

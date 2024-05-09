@@ -2,6 +2,8 @@ import Cards from "../Cards/cards";
 import Footer from "../HeaderFooter/footer";
 import Navigation from "../HeaderFooter/navigation";
 import { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function Homepage() {
     const [medicines, setMedicines] = useState([]);
@@ -32,6 +34,15 @@ function Homepage() {
     return (
         <>
           <Navigation />
+          <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+              <Button variant="outline-light">Search</Button>
+          </Form>
           <div className="flex justify-center p-10">
             <div className="flex flex-wrap gap-2 w-full justify-center">
               {currentItems.map(medicine => (
