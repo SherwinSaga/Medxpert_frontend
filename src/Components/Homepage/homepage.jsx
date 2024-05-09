@@ -6,30 +6,35 @@ import "./homepage.css";
 import { MDBContainer, MDBNavbar, MDBBtn, MDBInputGroup } from 'mdb-react-ui-kit';
 
 function Homepage() {
-    const [medicines, setMedicines] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+  const [query, setQuery] = useState("");
+  const [medicines, setMedicines] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-    useEffect(() => {
-      fetch('http://localhost:8080/medicine/HP_medicine') 
-          .then(response => response.json())
-          .then(data => setMedicines(data));
-    }, []);
+  useEffect(() => {
+      if (query !== "") {
+          fetch(`http://localhost:8080/medicine/search?query=${query}`)
+              .then(response => response.json())
+              .then(data => setMedicines(data));
+      } else {
+          fetch('http://localhost:8080/medicine/HP_medicine') 
+              .then(response => response.json())
+              .then(data => setMedicines(data));
+      }
+  }, [query]);
 
+  const handleClick = (event) => {
+      setCurrentPage(Number(event.target.id));
+  }  
 
+  const pages = [];
+  for (let i = 1; i <= Math.ceil(medicines.length / itemsPerPage); i++) {
+      pages.push(i);
+  }
 
-    const handleClick = (event) => {
-        setCurrentPage(Number(event.target.id));
-    }  
-
-    const pages = [];
-    for (let i = 1; i <= Math.ceil(medicines.length / itemsPerPage); i++) {
-        pages.push(i);
-    }
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = medicines.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = medicines.slice(indexOfFirstItem, indexOfLastItem);
 
     return (
         <>
@@ -37,7 +42,7 @@ function Homepage() {
           <MDBNavbar className="searchBar">
             <MDBContainer fluid>
               <MDBInputGroup tag="form" className='d-flex'>
-                <input className='form-control' placeholder="Search" aria-label="Search" type='Search' />
+                <input className='form-control' placeholder="Search" aria-label="Search" type='Search' value={query} onChange={(e) => setQuery(e.target.value)} />
               </MDBInputGroup>
             </MDBContainer>
           </MDBNavbar>
