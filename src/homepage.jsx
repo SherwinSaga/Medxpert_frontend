@@ -8,25 +8,7 @@ function Homepage() {
         <div className="flex justify-center p-10">
           <div className="flex flex-wrap gap-2 w-full justify-center">
             <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
+            
           </div>
         </div>
       </>
