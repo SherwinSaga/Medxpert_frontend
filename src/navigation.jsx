@@ -5,6 +5,9 @@ function Navigation(){
 
     const[query, setQuery] = useState("");
     //to do search
+    //if searchbar = null then do normal display     i.e - ibalhin ang hinimo na display sa homepage ngari
+    //if current user is at home, display medicine
+    //if current user is at reviews, display reviews
 
     const handleclick1 = () => {
         console.log("home");

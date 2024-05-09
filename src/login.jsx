@@ -12,7 +12,7 @@ function Login() {
     const handleSubmit = event => {
         event.preventDefault();
         
-        /*fetch('http://localhost:8080/users/login', {
+        fetch('http://localhost:8080/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,8 +29,8 @@ function Login() {
         })
         .catch((error) => {
             console.error('Error:', error);
-        });*/
-        navigate('/Homepage');
+        });
+        
     };
     
 
