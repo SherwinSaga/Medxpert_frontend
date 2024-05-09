@@ -5,7 +5,7 @@ function Reviews(){
     return(
         <>  
          <Navigation/>
-            <h4>REVIERWSSSSSSSS</h4>
+            <img src="https://i.imgur.com/jyqSVTn.jpeg"alt="image" />
 
         </>
     );
