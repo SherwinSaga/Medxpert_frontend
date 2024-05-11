@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
 import Footer from "../HeaderFooter/footer";
 import Navigation from "../HeaderFooter/navigation";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 function Medicine_Card(){
 
     const location = useLocation();
@@ -9,15 +12,17 @@ function Medicine_Card(){
     return(
         <div>
             <Navigation/>
-            <div>
-                <h2>{medicine.medicine_name}</h2>
-                <p>{medicine.medicine_desc}</p>
-                <p>{medicine.medicine_uses}</p>
-                <p>{medicine.medicine_side_effects}</p>
-                <p>{medicine.medicine_dosage}</p>
-                <p>{medicine.medicine_imgUrl}</p>
-                <img src="https://i.imgur.com/1O6t7Hh.jpeg" alt="image"/>
-            </div>
+
+            <Card>
+            <Card.Header className='text-5xl' style={{ fontWeight: 'bold' }}>{medicine.medicine_name}</Card.Header>
+            <Card.Body>
+                <Card.Title style={{ fontSize: '16px' }}>{medicine.medicine_desc}</Card.Title>
+                <Card.Img variant="top" src="src/assets/paracetamol.jpg" style={{ maxHeight: '600px', overflowY: 'auto' }}/>
+                <Card.Text style={{ fontSize: '15px' }}> <p style={{ fontWeight: 'bold', fontSize: '20px' }}>Uses:</p>{medicine.medicine_uses}</Card.Text>
+                <Card.Text style={{ fontSize: '15px' }}> <p style={{ fontWeight: 'bold', fontSize: '20px' }}>Side Effects:</p>{medicine.medicine_side_effects}</Card.Text>
+                <Card.Text style={{ fontSize: '15px' }}> <p style={{ fontWeight: 'bold', fontSize: '20px' }}>Dosage:</p> {medicine.medicine_dosage}</Card.Text>
+            </Card.Body>
+            </Card>
 
             <Footer/>
         </div>

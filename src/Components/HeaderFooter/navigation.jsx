@@ -29,10 +29,12 @@ function Navigation(){
 
     const handleclick3 = () => {
         console.log("About");
+        navigate('/about');
     }
 
     const handleclick4 = () => {
         console.log("Services");
+        navigate('/service');
     }
 
     const handleclick5 = () => {
