@@ -1,7 +1,7 @@
 import Cards from "../Cards/cards";
 import Footer from "../HeaderFooter/footer";
 import Navigation from "../HeaderFooter/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, React } from "react";
 import "./homepage.css";
 import { MDBContainer, MDBNavbar, MDBBtn, MDBInputGroup } from 'mdb-react-ui-kit';
 
@@ -61,6 +61,7 @@ function Homepage() {
                   </button>
               ))}
           </div>
+
           <Footer />
         </>
       );
