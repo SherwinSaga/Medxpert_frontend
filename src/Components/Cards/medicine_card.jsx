@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import React, { useEffect, useState } from "react";
 import ReviewCard from "./reviewCard";
 import { MDBCol, MDBContainer, MDBRow, MDBPagination, MDBPaginationLink, MDBPaginationItem } from "mdb-react-ui-kit";
+import { MDBBtn, MDBCard, MDBCardBody, MDBInput, MDBIcon, MDBTextArea, MDBTypography } from "mdb-react-ui-kit";
 
 function Medicine_Card(){
     const [review, setReview] = useState([]);
@@ -29,7 +30,7 @@ function Medicine_Card(){
     return(
         <div>
             <Navigation/>
-            <div className="container mt-10">
+            <div className="container mt-10 pb-5">
                 <div className="row">
                     <div className="col-md-6">
                         <Card className="h-100">
@@ -50,14 +51,53 @@ function Medicine_Card(){
                 </div>
             </div>
 
-            <MDBContainer className="py-5">
+            <MDBContainer className="">
 
                 <MDBRow className="d-flex justify-content-center">
                     <MDBCol md="10" xl="8" className="text-center"><h3 className="mb-4 text-5xl">Feedback</h3></MDBCol>
                 </MDBRow>
                 <ReviewCard reviews={currentItems} />
 
-                <MDBPagination className="justify-content-center">
+                <div style={{ width: "100%" }}>
+                    <MDBContainer className="mb-5" fluid>
+                        <MDBRow>
+                            <MDBCol md="12" lg="12" xl="12">
+                                <MDBCard>
+                                    <MDBCardBody className="p-4">
+                                        <div className="d-flex flex-start w-100">
+
+                                            <div className="w-100">
+                                                <MDBTypography tag="h5" className="mb-2">Add a Feedback</MDBTypography>
+                                                <div style={{ position: 'relative' }}>
+                                                <textarea
+                                                    placeholder="What is your feedback?"
+                                                    rows={4}
+                                                    style={{ width: "calc(100% - 70px)", height: "50px", border: "none", borderBottom: "1px solid #ced4da", outline: "none", resize: "none", marginBottom: "24px", display: "inline-block" }}
+                                                />
+                                                <div style={{ display: "inline-block", float: "right" }}>
+                                                    <MDBIcon icon="thumbs-up" className="me-4" style={{ fontSize: '24px' }} />
+                                                    <MDBIcon icon="thumbs-down" style={{ fontSize: '24px' }} />
+                                                </div>
+                                            </div>
+
+                                            <div className="d-flex justify-content-end">
+                                                <MDBBtn color="danger">
+                                                    Send <MDBIcon fas icon="long-arrow-alt-right ms-1" />
+                                                </MDBBtn>
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                    </MDBCardBody>
+                                </MDBCard>
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBContainer>
+                </div>
+                
+            </MDBContainer>
+
+            <MDBPagination className="justify-content-center pb-20">
                     <MDBPaginationItem disabled={currentPage === 1}>
                         <MDBPaginationLink onClick={() => setCurrentPage(currentPage - 1)}>Previous</MDBPaginationLink>
                     </MDBPaginationItem>
@@ -70,11 +110,8 @@ function Medicine_Card(){
 
                     <MDBPaginationItem disabled={currentPage === pages}>
                         <MDBPaginationLink onClick={() => setCurrentPage(currentPage + 1)}>Next</MDBPaginationLink>
-                    </MDBPaginationItem>
-                    
+                    </MDBPaginationItem>  
                 </MDBPagination>
-
-            </MDBContainer>
 
             <Footer/>
         </div>      
