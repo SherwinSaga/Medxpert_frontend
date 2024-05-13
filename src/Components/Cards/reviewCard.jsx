@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBCol, MDBContainer, MDBIcon, MDBRow, MDBTypography } from "mdb-react-ui-kit";
+import { MDBCol, MDBIcon, MDBRow, MDBTypography } from "mdb-react-ui-kit";
 
 function ReviewCard({ reviews }) {
   return (
@@ -14,9 +14,8 @@ function ReviewCard({ reviews }) {
                         {review.feedback}
                     </p>
                     <MDBTypography listUnStyled className="d-flex justify-content-center mb-0 mt-3">
-                        <li><MDBIcon fas icon="thumbs-up" size="xl" className="text-success me-2" /></li>
-                        <li><MDBIcon fas icon="thumbs-down" size="xl" className="text-danger ms-2" /></li>
-                        
+                        {review.rating === 1 && <li><MDBIcon fas icon="thumbs-up" size="xl" className="text-success me-2" /></li>}
+                        {review.rating === 0 && <li><MDBIcon fas icon="thumbs-down" size="xl" className="text-danger ms-2" /></li>}
                     </MDBTypography>
                 </MDBCol>
             ))}

@@ -4,7 +4,7 @@ import Navigation from "../HeaderFooter/navigation";
 import Card from 'react-bootstrap/Card';
 import React, { useEffect, useState } from "react";
 import ReviewCard from "./reviewCard";
-import { MDBCol, MDBContainer, MDBIcon, MDBRow, MDBTypography, MDBPagination, MDBPaginationLink, MDBPaginationItem } from "mdb-react-ui-kit";
+import { MDBCol, MDBContainer, MDBRow, MDBPagination, MDBPaginationLink, MDBPaginationItem } from "mdb-react-ui-kit";
 
 function Medicine_Card(){
     const [review, setReview] = useState([]);
@@ -18,7 +18,7 @@ function Medicine_Card(){
         fetch(`http://localhost:8080/reviews/specificMed/${medicine.id}`)
             .then(response => response.json())
             .then(data => {
-                console.log("Received review data: ", data.reviewDate);
+                //console.log("Received review data: ", data.reviewDate);
                 setReview(data);
             });
     }, [])
