@@ -65,6 +65,7 @@ function Reviews(){
                     <MDBTypography tag="h6" className="fw-bold mb-1">
                       Maggie Marsh
                     </MDBTypography>
+                    <p>Medicine Name</p>
                     <div className="d-flex align-items-center mb-3">
                       <p className="mb-0">
                         March 07, 2021
@@ -88,6 +89,7 @@ function Reviews(){
                     <MDBTypography tag="h6" className="fw-bold mb-1">
                       Lara Stewart
                     </MDBTypography>
+                    <p>Medicine Name</p>
                     <div className="d-flex align-items-center mb-3">
                       <p className="mb-0">
                         March 15, 2021
@@ -114,6 +116,7 @@ function Reviews(){
                     <MDBTypography tag="h6" className="fw-bold mb-1">
                       Alexa Bennett
                     </MDBTypography>
+                    <p>Medicine Name</p>
                     <div className="d-flex align-items-center mb-3">
                       <p className="mb-0">
                         March 24, 2021
@@ -138,6 +141,7 @@ function Reviews(){
                     <MDBTypography tag="h6" className="fw-bold mb-1">
                       Alexa Bennett
                     </MDBTypography>
+                    <p>Medicine Name</p>
                     <div className="d-flex align-items-center mb-3">
                       <p className="mb-0">
                         March 30, 2021
@@ -162,6 +166,7 @@ function Reviews(){
                     <MDBTypography tag="h6" className="fw-bold mb-1">
                       Alexa Bennett
                     </MDBTypography>
+                    <p>Medicine Name</p>
                     <div className="d-flex align-items-center mb-3">
                       <p className="mb-0">
                         March 30, 2021

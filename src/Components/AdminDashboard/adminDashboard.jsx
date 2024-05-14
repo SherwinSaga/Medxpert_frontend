@@ -21,6 +21,7 @@ import {
   MDBCardText,
   MDBCardHeader,
   MDBCardFooter,
+  MDBIcon
 } from 'mdb-react-ui-kit';
 
 function AdminDashboard() {
@@ -174,6 +175,11 @@ function AdminDashboard() {
                             Maggie Marsh
                           </MDBTypography>
                           <div className="d-flex align-items-center mb-3">
+                          <span className="badge bg-primary mr-2">Ignore</span>
+                          <span className="badge bg-danger">Remove</span>
+                    </div>
+                          <p>Medicine Name</p>
+                          <div className="d-flex align-items-center mb-3">
                             <p className="mb-0">
                               March 07, 2021
                             </p>
@@ -196,6 +202,9 @@ function AdminDashboard() {
                           <MDBTypography tag="h6" className="fw-bold mb-1">
                             Lara Stewart
                           </MDBTypography>
+                          <span className="badge bg-primary mr-2">Ignore</span>
+                          <span className="badge bg-danger">Remove</span>
+                          <p>Medicine Name</p>
                           <div className="d-flex align-items-center mb-3">
                             <p className="mb-0">
                               March 15, 2021
@@ -222,6 +231,9 @@ function AdminDashboard() {
                           <MDBTypography tag="h6" className="fw-bold mb-1">
                             Alexa Bennett
                           </MDBTypography>
+                          <span className="badge bg-primary mr-2">Ignore</span>
+                          <span className="badge bg-danger">Remove</span>
+                          <p>Medicine Name</p>
                           <div className="d-flex align-items-center mb-3">
                             <p className="mb-0">
                               March 24, 2021
@@ -246,6 +258,9 @@ function AdminDashboard() {
                           <MDBTypography tag="h6" className="fw-bold mb-1">
                             Alexa Bennett
                           </MDBTypography>
+                          <span className="badge bg-primary mr-2">Ignore</span>
+                          <span className="badge bg-danger">Remove</span>
+                          <p>Medicine Name</p>
                           <div className="d-flex align-items-center mb-3">
                             <p className="mb-0">
                               March 30, 2021
