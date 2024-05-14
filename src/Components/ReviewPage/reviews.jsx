@@ -156,27 +156,27 @@ function Reviews(){
 
               <hr className="my-0" />
 
-<MDBCardBody className="p-4">
-  <div className="d-flex flex-start">
-    <div>
-      <MDBTypography tag="h6" className="fw-bold mb-1">
-        Alexa Bennett
-      </MDBTypography>
-      <div className="d-flex align-items-center mb-3">
-        <p className="mb-0">
-          March 30, 2021
-        </p>
-      </div>
-      <p className="mb-0">
-        It uses a dictionary of over 200 Latin words, combined
-        with a handful of model sentence structures, to generate
-        Lorem Ipsum which looks reasonable. The generated Lorem
-        Ipsum is therefore always free from repetition, injected
-        humour, or non-characteristic words etc.
-      </p>
-    </div>
-  </div>
-</MDBCardBody>
+              <MDBCardBody className="p-4">
+                <div className="d-flex flex-start">
+                  <div>
+                    <MDBTypography tag="h6" className="fw-bold mb-1">
+                      Alexa Bennett
+                    </MDBTypography>
+                    <div className="d-flex align-items-center mb-3">
+                      <p className="mb-0">
+                        March 30, 2021
+                      </p>
+                    </div>
+                    <p className="mb-0">
+                      It uses a dictionary of over 200 Latin words, combined
+                      with a handful of model sentence structures, to generate
+                      Lorem Ipsum which looks reasonable. The generated Lorem
+                      Ipsum is therefore always free from repetition, injected
+                      humour, or non-characteristic words etc.
+                    </p>
+                  </div>
+                </div>
+              </MDBCardBody>
               
             </MDBCard>
           </MDBCol>

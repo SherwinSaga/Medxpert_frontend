@@ -9,6 +9,7 @@ import Reviews from './Components/ReviewPage/reviews';
 import Medicine_Card from './Components/Cards/medicine_card';
 import Service from './Components/ServicesContact/service';
 import About from './Components/AboutPage/about';
+import AdminDashboard from './Components/AdminDashboard/adminDashboard';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/medicine" element={<Medicine_Card />} />
           <Route path="/service" element={<Service/>} />
           <Route path="/about" element={<About />} />
+          <Route path="/adminDashboard" element={<AdminDashboard/>} />
         </Routes>
 
       </BrowserRouter>

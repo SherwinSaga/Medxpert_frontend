@@ -38,6 +38,11 @@ function Navigation(){
     }
 
     const handleclick5 = () => {
+        console.log("Admin");
+        navigate('/adminDashboard');
+    }
+
+    const handleclick6 = () => {
         console.log("Logo");
     }
 
@@ -60,6 +65,7 @@ function Navigation(){
                 <Nav.Link href="#action2" className="navLinks" style={{ color: 'white' }} onClick={handleclick2}>Reviews</Nav.Link>
                 <Nav.Link href="#action3" className="navLinks" style={{ color: 'white' }} onClick={handleclick3}>About</Nav.Link>
                 <Nav.Link href="#action4" className="navLinks" style={{ color: 'white' }} onClick={handleclick4}>Contact</Nav.Link>
+                <Nav.Link href="#action4" className="navLinks" style={{ color: 'white' }} onClick={handleclick5}>Admin</Nav.Link>
               </Nav>
               
             </Navbar.Collapse>
