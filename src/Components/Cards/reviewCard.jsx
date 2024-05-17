@@ -8,7 +8,8 @@ function ReviewCard({ reviews }) {
             {reviews.map((review) => (
                 <MDBCol key={review.review_ID} md="4" className="mb-5 mb-md-0">
                     <div className="d-flex justify-content-center mb-4"></div>
-                    <h6 className="text-primary mb-3">{review.user_id.usersname}</h6>
+                    <h6 className="text-primary mb-1">{review.user_id.usersname}</h6>
+                    <i className="fas fa-flag"></i>
                     <p className="px-xl-3 mb-3 mt-3">
                         <MDBIcon fas icon="quote-left" className="pe-2" />
                         {review.feedback}

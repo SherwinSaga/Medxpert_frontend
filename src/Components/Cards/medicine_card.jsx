@@ -57,10 +57,10 @@ function Medicine_Card(){
 
             <MDBContainer className="">
 
-                <MDBRow className="d-flex justify-content-center">
-                    <MDBCol md="10" xl="8" className="text-center"><h3 className="mb-4 text-5xl">Feedback</h3></MDBCol>
-                </MDBRow>
-                <ReviewCard reviews={currentItems} />
+            <MDBRow className="d-flex justify-content-center">
+                <MDBCol md="10" xl="8" className="text-center"><h3 className="mb-4 text-5xl">Feedback</h3></MDBCol>
+            </MDBRow>
+            <ReviewCard reviews={currentItems} />
 
                 <div style={{ width: "100%" }}>
                     <MDBContainer className="mb-5" fluid>

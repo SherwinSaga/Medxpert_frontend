@@ -25,7 +25,7 @@ function Reviews(){
           <Navigation />
           
           <section>
-            <MDBContainer className="py-5" style={{ maxWidth: "2000px" }}>
+            <MDBContainer className="py-5 mb-5" style={{ maxWidth: "2000px" }}>
               <MDBRow className="justify-content-center">
                 <MDBCol md="12" lg="10">
                   <MDBCard className="text-dark">
