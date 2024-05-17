@@ -15,6 +15,10 @@ function Medicine_Card(){
     const location = useLocation();
     const medicine = location.state.medicine;
 
+    //to do
+    //add feedback function
+    //get userid and insert into review table
+
     useEffect(() => {
         fetch(`http://localhost:8080/reviews/specificMed/${medicine.id}`)
             .then(response => response.json())

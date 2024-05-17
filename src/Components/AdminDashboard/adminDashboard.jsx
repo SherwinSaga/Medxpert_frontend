@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import Navigation from '../HeaderFooter/navigation';
 import Footer from '../HeaderFooter/footer';
 import {
@@ -27,8 +27,113 @@ import {
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('tab1');
 
+  //4 medicines
+  const [medicines, setMedicines] = useState([]);
+
+  //add medicine
+  const [medicine_Name, setMedicineName] = useState("");
+  const [medicine_description, setDescription] = useState("");
+  const [medicine_dosage, setDosage] = useState("");
+  const [medicine_uses, setUses] = useState("");
+  const [medicine_side_effects, setSideEffects] = useState("");
+  const [medicine_imgUrl, setImageUrl] = useState("");
+
+  //review stats
+  const [reviewCount, setReviewCount] = useState(0);
+
+  //meidince stats
+  const [medicineCount, setMedicineCount] = useState(0);
+
+  //positive med
+  const [positiveMed, setPositiveMed] = useState([]);
+
+  //negative med
+  const [negativeMed, setNegativeMed] = useState([]);
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  //count the review
+  useEffect(() => {
+    fetch('http://localhost:8080/reviews/countreview')
+      .then(response => response.json())
+      .then(data => setReviewCount(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+
+  //4 medicine
+  useEffect(() => {
+    fetch('http://localhost:8080/medicine/last_four_medicines')
+      .then(response => response.json())
+      .then(data => setMedicines(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+  //positive meds
+  useEffect(() => {
+    fetch('http://localhost:8080/reviews/positiveMed')
+      .then(response => response.json())
+      .then(data => setPositiveMed(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+  //negative meds
+  useEffect(() => {
+    fetch('http://localhost:8080/reviews/negativeMed')
+      .then(response => response.json())
+      .then(data => setNegativeMed(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+  //medicine count 
+  useEffect(() => {
+    fetch('http://localhost:8080/medicine/countMeds')
+      .then(response => response.json())
+      .then(data => setMedicineCount(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+  
+
+  //add medicine 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  
+    const newMedicine = {
+      medicine_Name,
+      medicine_description,
+      medicine_dosage,
+      medicine_uses,
+      medicine_side_effects,
+      medicine_imgUrl
+    };
+  
+    fetch('http://localhost:8080/medicine/add_medicine', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newMedicine)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+
+    window.location.reload();
   };
 
   return (
@@ -37,63 +142,28 @@ function AdminDashboard() {
       <div className="container mb-5" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '20px' }}>
         <div className="left-panel" style={{ flex: '1', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', backgroundColor: '#fff' }}>
           <div className="card-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', boxSizing: 'border-box' }}>
+          {medicines.map((medicine) => (
             <MDBCard alignment='center' className='mb-1 card' style={{ backgroundColor: '#051650', color: 'white', flex: '1 1 calc(50% - 10px)', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', padding: '20px' }}>
-              <MDBCardHeader>MEDICINE NAME</MDBCardHeader>
+              <MDBCardHeader></MDBCardHeader>
               <MDBCardBody>
-                <MDBCardText>Description</MDBCardText>
-                <MDBCardText>Dosage</MDBCardText>
-                <MDBCardText>Uses</MDBCardText>
-                <MDBCardText>Side Effects</MDBCardText>
-                <MDBCardText>URL</MDBCardText>
+              {medicine.medicine_Name}
               </MDBCardBody>
-              <MDBCardFooter className='text-muted'>2 days ago</MDBCardFooter>
+              <MDBCardFooter className='text-muted'></MDBCardFooter>
             </MDBCard>
-
-            <MDBCard alignment='center' className='mb-1 card' style={{ backgroundColor: '#051650', color: 'white', flex: '1 1 calc(50% - 10px)', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', padding: '20px' }}>
-              <MDBCardHeader>MEDICINE NAME</MDBCardHeader>
-              <MDBCardBody>
-                <MDBCardText>Description</MDBCardText>
-                <MDBCardText>Dosage</MDBCardText>
-                <MDBCardText>Uses</MDBCardText>
-                <MDBCardText>Side Effects</MDBCardText>
-                <MDBCardText>URL</MDBCardText>
-              </MDBCardBody>
-              <MDBCardFooter className='text-muted'>2 days ago</MDBCardFooter>
-            </MDBCard>
-
-            <MDBCard alignment='center' className='mb-1 card' style={{ backgroundColor: '#051650', color: 'white', flex: '1 1 calc(50% - 10px)', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', padding: '20px' }}>
-              <MDBCardHeader>MEDICINE NAME</MDBCardHeader>
-              <MDBCardBody>
-                <MDBCardText>Description</MDBCardText>
-                <MDBCardText>Dosage</MDBCardText>
-                <MDBCardText>Uses</MDBCardText>
-                <MDBCardText>Side Effects</MDBCardText>
-                <MDBCardText>URL</MDBCardText>
-              </MDBCardBody>
-              <MDBCardFooter className='text-muted'>2 days ago</MDBCardFooter>
-            </MDBCard>
-
-            <MDBCard alignment='center' className='mb-1 card' style={{ backgroundColor: '#051650', color: 'white', flex: '1 1 calc(50% - 10px)', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', padding: '20px' }}>
-              <MDBCardHeader>MEDICINE NAME</MDBCardHeader>
-              <MDBCardBody>
-                <MDBCardText>Description</MDBCardText>
-                <MDBCardText>Dosage</MDBCardText>
-                <MDBCardText>Uses</MDBCardText>
-                <MDBCardText>Side Effects</MDBCardText>
-                <MDBCardText>URL</MDBCardText>
-              </MDBCardBody>
-              <MDBCardFooter className='text-muted'>2 days ago</MDBCardFooter>
-            </MDBCard>
+          ))}
           </div>
 
           <p style={{ fontSize: '20px', marginTop: '20px' }}>Add Medicine:</p>
-          <MDBRow tag="form" className='g-3'>
+          
+          <MDBRow tag="form" className='g-3' onSubmit={handleSubmit}>
             <MDBCol md="12">
               <MDBInput
                 id='validationCustom01'
                 required
                 label='Medicine Name'
                 size='sm'
+                value={medicine_Name}
+                onChange={(e) => setMedicineName(e.target.value)}
               />
             </MDBCol>
 
@@ -103,6 +173,8 @@ function AdminDashboard() {
                 id="textAreaExample" 
                 rows={3} 
                 size='sm'
+                value={medicine_description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </MDBCol>
 
@@ -113,6 +185,8 @@ function AdminDashboard() {
                   required
                   label='Dosage'
                   size='sm'
+                  value={medicine_dosage}
+                  onChange={(e) => setDosage(e.target.value)}
                 />
                 <div className='invalid-feedback'>Please choose a dosage.</div>
               </div>
@@ -125,6 +199,8 @@ function AdminDashboard() {
                 required
                 label='Uses'
                 size='sm'
+                value={medicine_uses}
+                onChange={(e) => setUses(e.target.value)}
               />
             </MDBCol>
 
@@ -135,6 +211,8 @@ function AdminDashboard() {
                 required
                 label='Side Effects'
                 size='sm'
+                value={medicine_side_effects}
+                onChange={(e) => setSideEffects(e.target.value)}
               />
             </MDBCol>
 
@@ -145,6 +223,8 @@ function AdminDashboard() {
                 required
                 label='Image URL'
                 size='sm'
+                value={medicine_imgUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
               />
             </MDBCol>
 
@@ -152,6 +232,7 @@ function AdminDashboard() {
               <MDBBtn type='submit' size='sm'>Add Medicine</MDBBtn>
             </MDBCol>
           </MDBRow>
+          
         </div>
 
         <div className="center-panel" style={{ flex: '1', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', backgroundColor: '#fff' }}>
@@ -298,20 +379,20 @@ function AdminDashboard() {
                     </MDBTabsItem>
                     <MDBTabsItem>
                       <MDBTabsLink active={activeTab === 'tab2'} onClick={() => handleTabClick('tab2')}>
-                        Most Liked
+                        Positive
                       </MDBTabsLink>
                     </MDBTabsItem>
                     <MDBTabsItem>
                       <MDBTabsLink active={activeTab === 'tab3'} onClick={() => handleTabClick('tab3')}>
-                        Most Disliked
+                        Negative
                       </MDBTabsLink>
                     </MDBTabsItem>
                   </MDBTabs>
                 </MDBCardHeader>
                 <MDBCardBody>
-                  {activeTab === 'tab1' && <MDBCardText>The total number of medicines are 69 nya display guro ang 10 oldest medicine</MDBCardText>}
-                  {activeTab === 'tab2' && <MDBCardText>The most liked medicine is Paracetamol nya display guro top 10 liked</MDBCardText>}
-                  {activeTab === 'tab3' && <MDBCardText>The most disliked medicine is Antibiotic nya display sd dri ang top 10 disliked</MDBCardText>}
+                  {activeTab === 'tab1' && <MDBCardText>The total number of medicines are {medicineCount}</MDBCardText>}
+                  {activeTab === 'tab2' && <MDBCardText>The medicine with the most positive feedback is/are <br/><br/> {positiveMed.map(med => med.medicine_Name).join(', ')}</MDBCardText>}
+                  {activeTab === 'tab3' && <MDBCardText>The medicine with the most negative feedback is/are <br/><br/> {negativeMed.map(med => med.medicine_Name).join(', ')}</MDBCardText>}
                 </MDBCardBody>
               </MDBCard>
             </MDBCardBody>
@@ -322,9 +403,8 @@ function AdminDashboard() {
             <MDBCardBody>
             <MDBCard>
               <MDBListGroup flush>
-                <MDBListGroupItem>Total Reviews: 696969</MDBListGroupItem>
-                <MDBListGroupItem>Total Spams: 212121</MDBListGroupItem>
-                <MDBListGroupItem>Wanako kbaw say uban ibutang</MDBListGroupItem>
+                <MDBListGroupItem>Total Reviews: {reviewCount}</MDBListGroupItem>
+                <MDBListGroupItem>Total Reports: {/* to do */}</MDBListGroupItem>
               </MDBListGroup>
             </MDBCard>
             </MDBCardBody>
