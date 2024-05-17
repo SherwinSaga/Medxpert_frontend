@@ -1,6 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link, json, useNavigate} from 'react-router-dom';
+import { FaUserTag } from "react-icons/fa";
+import { FaUserShield } from "react-icons/fa";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import video from '../../assets/vid.mp4';
+import "./register.css"
 
 function Register() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginStatus, setLoginStatus] = useState('');
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch('http://localhost:8080/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+
+            if (data.message === "Login Success") {
+                const { user } = data;
+                document.cookie = `user=${encodeURIComponent(JSON.stringify(user))}; path=/`;
+                console.log("Cookie after login:", document.cookie);
+                navigate('/homepage');
+            } else {
+                alert('Invalid username or password');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
     return (
         <div className="loginPage flex" style={{ display: 'flex', alignItems: 'center' }}>
             <div className="container flex" style={{ display: 'flex', alignItems: 'center' }}>
@@ -14,7 +52,7 @@ function Register() {
 
                     <div className="footerDiv flex" style={{ display: 'flex', alignItems: 'center' }}>
                         <span className="text">Have an account?</span>
-                        <Link>
+                        <Link to={'/login'}>
                             <button className="btn">Login</button>
                         </Link>
                     </div>

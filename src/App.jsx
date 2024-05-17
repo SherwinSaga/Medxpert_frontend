@@ -11,6 +11,7 @@ import Service from './Components/ServicesContact/service';
 import About from './Components/AboutPage/about';
 import AdminDashboard from './Components/AdminDashboard/adminDashboard';
 import PrivateRoute from './Components/hocs/privateroute';
+import Register from './Components/LoginRegister/register';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/homepage" element={<Homepage />} />

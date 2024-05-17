@@ -57,7 +57,7 @@ function Login() {
 
                     <div className="footerDiv flex" style={{ display: 'flex', alignItems: 'center' }}>
                         <span className="text">Don't have an account?</span>
-                        <Link>
+                        <Link to={'/register'}>
                             <button className="btn">Sign Up</button>
                         </Link>
                     </div>
