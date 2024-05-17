@@ -6,7 +6,8 @@ import React, { useEffect, useState } from "react";
 import ReviewCard from "./reviewCard";
 import { MDBCol, MDBContainer, MDBRow, MDBPagination, MDBPaginationLink, MDBPaginationItem } from "mdb-react-ui-kit";
 import { MDBBtn, MDBCard, MDBCardBody, MDBInput, MDBIcon, MDBTextArea, MDBTypography } from "mdb-react-ui-kit";
-
+import { getCurrentUser } from "../utility/utility";
+ 
 function Medicine_Card(){
     const [review, setReview] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -14,6 +15,11 @@ function Medicine_Card(){
 
     const location = useLocation();
     const medicine = location.state.medicine;
+
+    const user = getCurrentUser();
+    
+    console.log(user);
+    console.log(medicine.id);
 
     //to do
     //add feedback function
@@ -23,7 +29,6 @@ function Medicine_Card(){
         fetch(`http://localhost:8080/reviews/specificMed/${medicine.id}`)
             .then(response => response.json())
             .then(data => {
-                //console.log("Received review data: ", data.reviewDate);
                 setReview(data);
             });
     }, [])
@@ -33,6 +38,7 @@ function Medicine_Card(){
     
     return(
         <div>
+            
             <Navigation/>
             <div className="container mt-10 pb-5">
                 <div className="row">

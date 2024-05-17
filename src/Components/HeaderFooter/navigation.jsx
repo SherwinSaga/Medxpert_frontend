@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import {  useNavigate } from "react-router-dom";
+import { getCurrentUser, logout } from "../utility/utility";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import "./navigation.css";
@@ -35,6 +36,10 @@ function Navigation(){
         navigate('/adminDashboard');
     }
 
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    }
 
 
     return (
@@ -55,6 +60,7 @@ function Navigation(){
                 <Nav.Link href="#action3" className="navLinks" style={{ color: 'white' }} onClick={handleclick3}>About</Nav.Link>
                 <Nav.Link href="#action4" className="navLinks" style={{ color: 'white' }} onClick={handleclick4}>Contact</Nav.Link>
                 <Nav.Link href="#action4" className="navLinks" style={{ color: 'white' }} onClick={handleclick5}>Admin</Nav.Link>
+                <Nav.Link href="#action6" className="navLinks" style={{ color: 'white' }} onClick={handleLogout}>Logout</Nav.Link>
               </Nav>
               
             </Navbar.Collapse>

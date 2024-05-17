@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, json, useNavigate} from 'react-router-dom';
 import { FaUserTag } from "react-icons/fa";
 import { FaUserShield } from "react-icons/fa";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import video from '../../assets/vid.mp4';
+import Cookies from 'js-cookie';
 import logo from '../../assets/logo1.png';
 import "./login.css"
 
@@ -15,28 +16,30 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const handleSubmit = event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        
-        fetch('http://localhost:8080/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username: username, password }), // changed 'Username' to 'username'
-        })
-        .then(response => response.json())
-        .then(data => {
+
+        try {
+            const response = await fetch('http://localhost:8080/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+
             if (data.message === "Login Success") {
+                document.cookie = `user=${encodeURIComponent(JSON.stringify({ username }))}; path=/`;
+                console.log("Cookie after login:", document.cookie);
                 navigate('/homepage');
             } else {
                 alert('Invalid username or password');
             }
-        })
-        .catch((error) => {
+        } catch (error) {
             console.error('Error:', error);
-        });
-        
+        }
     };
     
 
