@@ -15,16 +15,22 @@ function Medicine_Card(){
 
     const location = useLocation();
     const medicine = location.state.medicine;
-
     const user = getCurrentUser();
     
-    console.log(user);
-    console.log(medicine.id);
+    const getCurrentDate = () => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('T')[0];
+        return formattedDate;
+    };
 
-    //to do
-    //add feedback function
-    //get userid and insert into review table
+    //review fields
+    const reviewdate = getCurrentDate();
+    const [rating, setRating] = useState(null); 
+    const [feedback, setFeedback] = useState("");
+    const user_id = user.user_id;
+    const medicine_id = medicine.id;
 
+    //get specific medicine
     useEffect(() => {
         fetch(`http://localhost:8080/reviews/specificMed/${medicine.id}`)
             .then(response => response.json())
@@ -32,6 +38,44 @@ function Medicine_Card(){
                 setReview(data);
             });
     }, [])
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    
+        const newReview = {
+            feedback: feedback,
+            rating: rating,
+            reviewdate: reviewdate
+        };
+        console.log(user_id);
+        console.log(user_id);
+        
+        fetch(`http://localhost:8080/reviews/add_review?User_id=${user_id}&medicineId=${medicine_id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newReview)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        
+    
+    };
+    
+    const handleclickUp = () => {
+        setRating(1);
+    }
+
+    const handleclickDown = () => {
+        setRating(0);
+    }
 
     const pages = Math.ceil(review.length / itemsPerPage);
     const currentItems = review.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -83,15 +127,17 @@ function Medicine_Card(){
                                                     placeholder="What is your feedback?"
                                                     rows={4}
                                                     style={{ width: "calc(100% - 70px)", height: "50px", border: "none", borderBottom: "1px solid #ced4da", outline: "none", resize: "none", marginBottom: "24px", display: "inline-block" }}
+                                                    value={feedback}
+                                                    onChange={(e) => setFeedback(e.target.value)}
                                                 />
                                                 <div style={{ display: "inline-block", float: "right" }}>
-                                                    <MDBIcon icon="thumbs-up" className="me-4" style={{ fontSize: '24px' }} />
-                                                    <MDBIcon icon="thumbs-down" style={{ fontSize: '24px' }} />
+                                                <MDBIcon icon="thumbs-up" className="me-4" style={{ fontSize: '24px', color: rating === 1 ? 'blue' : 'black' }} onClick={handleclickUp} />
+                                                    <MDBIcon icon="thumbs-down" style={{ fontSize: '24px', color: rating === 0 ? 'red' : 'black' }} onClick={handleclickDown} />
                                                 </div>
                                             </div>
 
                                             <div className="d-flex justify-content-end">
-                                                <MDBBtn color="danger">
+                                                <MDBBtn color="danger" onClick={handleSubmit}>
                                                     Send <MDBIcon fas icon="long-arrow-alt-right ms-1" />
                                                 </MDBBtn>
                                             </div>

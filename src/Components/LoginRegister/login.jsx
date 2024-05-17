@@ -31,7 +31,8 @@ function Login() {
             const data = await response.json();
 
             if (data.message === "Login Success") {
-                document.cookie = `user=${encodeURIComponent(JSON.stringify({ username }))}; path=/`;
+                const { user } = data;
+                document.cookie = `user=${encodeURIComponent(JSON.stringify(user))}; path=/`;
                 console.log("Cookie after login:", document.cookie);
                 navigate('/homepage');
             } else {
