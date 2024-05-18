@@ -29,11 +29,6 @@ function Navigation() {
         navigate('/service');
     }
 
-    const handleclick5 = () => {
-        console.log("Admin");
-        navigate('/adminDashboard');
-    }
-
     const handleLogout = () => {
         logout();
         navigate('/login');
@@ -52,7 +47,6 @@ function Navigation() {
                             <Nav.Link href="#action2" className="navLinks" style={{ color: 'white' }} onClick={handleclick2}>Reviews</Nav.Link>
                             <Nav.Link href="#action3" className="navLinks" style={{ color: 'white' }} onClick={handleclick3}>About</Nav.Link>
                             <Nav.Link href="#action4" className="navLinks" style={{ color: 'white' }} onClick={handleclick4}>Contact</Nav.Link>
-                            <Nav.Link href="#action5" className="navLinks" style={{ color: 'white' }} onClick={handleclick5}>Admin</Nav.Link>
                         </Nav>
                         <Nav>
                             <Nav.Link href="#action6" className="navLinks" style={{ color: 'white' }} onClick={handleLogout}>Logout</Nav.Link>

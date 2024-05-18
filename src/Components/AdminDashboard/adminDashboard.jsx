@@ -304,60 +304,8 @@ function AdminDashboard() {
                       </div>
                     </MDBCardBody>
 
-                    <hr className="my-0" />
-
-                    <MDBCardBody className="p-4">
-                      <div className="d-flex flex-start">
-                        <div>
-                          <MDBTypography tag="h6" className="fw-bold mb-1">
-                            Alexa Bennett
-                          </MDBTypography>
-                          <span className="badge bg-primary mr-2">Ignore</span>
-                          <span className="badge bg-danger">Remove</span>
-                          <p>Medicine Name</p>
-                          <div className="d-flex align-items-center mb-3">
-                            <p className="mb-0">
-                              March 24, 2021
-                            </p>
-                          </div>
-                          <p className="mb-0">
-                            There are many variations of passages of Lorem Ipsum
-                            available, but the majority have suffered alteration in
-                            some form, by injected humour, or randomised words which
-                            don't look even slightly believable. If you are going to
-                            use a passage of Lorem Ipsum, you need to be sure.
-                          </p>
-                        </div>
-                      </div>
-                    </MDBCardBody>
-
-                    <hr className="my-0" />
-
-                    <MDBCardBody className="p-4">
-                      <div className="d-flex flex-start">
-                        <div>
-                          <MDBTypography tag="h6" className="fw-bold mb-1">
-                            Alexa Bennett
-                          </MDBTypography>
-                          <span className="badge bg-primary mr-2">Ignore</span>
-                          <span className="badge bg-danger">Remove</span>
-                          <p>Medicine Name</p>
-                          <div className="d-flex align-items-center mb-3">
-                            <p className="mb-0">
-                              March 30, 2021
-                            </p>
-                          </div>
-                          <p className="mb-0">
-                            It uses a dictionary of over 200 Latin words, combined
-                            with a handful of model sentence structures, to generate
-                            Lorem Ipsum which looks reasonable. The generated Lorem
-                            Ipsum is therefore always free from repetition, injected
-                            humour, or non-characteristic words etc.
-                          </p>
-                        </div>
-                      </div>
-                    </MDBCardBody>
-
+                    
+                    
                   </MDBCard>
                 </MDBCol>
               </MDBRow>

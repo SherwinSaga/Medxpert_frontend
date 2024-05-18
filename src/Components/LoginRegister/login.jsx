@@ -30,14 +30,29 @@ function Login() {
 
             const data = await response.json();
 
+            
             if (data.message === "Login Success") {
                 const { user } = data;
                 document.cookie = `user=${encodeURIComponent(JSON.stringify(user))}; path=/`;
-                console.log("Cookie after login:", document.cookie);
-                navigate('/homepage');
+                //console.log("Cookie after login:", document.cookie);
+                //console.log(user.user_role.role_ID);
+                switch(user.user_role.role_ID){
+                    case 1:
+                        navigate('/adminDashboard');
+                        break;
+                    case 2:
+                        
+                        navigate('/homepage');
+                        break;
+                    default:
+                        alert("User Role Error");
+                }
+
             } else {
                 alert('Invalid username or password');
             }
+
+            
         } catch (error) {
             console.error('Error:', error);
         }
