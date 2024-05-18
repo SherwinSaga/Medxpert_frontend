@@ -38,11 +38,11 @@ function Login() {
                 //console.log(user.user_role.role_ID);
                 switch(user.user_role.role_ID){
                     case 1:
-                        navigate('/adminDashboard');
+                        navigate('/homepage');
                         break;
                     case 2:
                         
-                        navigate('/homepage');
+                        navigate('/adminDashboard');
                         break;
                     default:
                         alert("User Role Error");

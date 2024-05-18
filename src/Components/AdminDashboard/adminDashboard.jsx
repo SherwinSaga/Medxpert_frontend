@@ -23,6 +23,7 @@ import {
   MDBCardFooter,
   MDBIcon
 } from 'mdb-react-ui-kit';
+import AdminNav from '../HeaderFooter/adminNav';
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('tab1');
@@ -138,7 +139,7 @@ function AdminDashboard() {
 
   return (
     <>
-      <Navigation />
+      <AdminNav />
       <div className="container mb-5" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '20px' }}>
         <div className="left-panel" style={{ flex: '1', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', backgroundColor: '#fff' }}>
           <div className="card-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', boxSizing: 'border-box' }}>
