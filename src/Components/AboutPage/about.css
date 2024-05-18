@@ -1,0 +1,27 @@
+/* about.css */
+.carousel-image {
+  height: 840px;
+  object-fit: cover;
+}
+
+.carousel-caption-custom {
+  background-color: rgba(5, 22, 80, 0.1); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.carousel-caption-custom h5 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.carousel-caption-custom p {
+  font-size: 1.5rem;
+  color: #dddddd;
+  margin-bottom: 15px;
+}
+
+.carousel-caption-custom p:last-child {
+  margin-bottom: 0;
+}
