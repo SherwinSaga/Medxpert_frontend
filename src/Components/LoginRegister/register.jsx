@@ -7,9 +7,9 @@ import video from '../../assets/vid.mp4';
 import "./register.css"
 
 function Register() {
-    const [username, setUsername] = useState('');
+    const [usersname, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loginStatus, setLoginStatus] = useState('');
+    
 
     const navigate = useNavigate();
 
@@ -17,24 +17,22 @@ function Register() {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8080/users/login', {
+            
+            const response = await fetch('http://localhost:8080/users/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ usersname, password }),
             });
 
-            const data = await response.json();
-
-            if (data.message === "Login Success") {
-                const { user } = data;
-                document.cookie = `user=${encodeURIComponent(JSON.stringify(user))}; path=/`;
-                console.log("Cookie after login:", document.cookie);
+            if(response.ok){
                 navigate('/homepage');
-            } else {
-                alert('Invalid username or password');
             }
+            else {
+                console.error('Registration failed:', response.statusText);
+            }
+            
         } catch (error) {
             console.error('Error:', error);
         }
@@ -62,7 +60,7 @@ function Register() {
                     <div className="headerDiv" >
                         <h3>Let Us Know You!</h3>
                     </div>
-                    {loginStatus && <div className="error">{loginStatus}</div>}
+                    
                     <form action="" className="form grid">
 
                         <div className="inputDiv">

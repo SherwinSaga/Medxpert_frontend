@@ -9,6 +9,7 @@ import logo from '../../assets/logo1.png';
 import "./login.css"
 
 
+
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -34,15 +35,12 @@ function Login() {
             if (data.message === "Login Success") {
                 const { user } = data;
                 document.cookie = `user=${encodeURIComponent(JSON.stringify(user))}; path=/`;
-                //console.log("Cookie after login:", document.cookie);
-                //console.log(user.user_role.role_ID);
                 switch(user.user_role.role_ID){
                     case 1:
-                        navigate('/homepage');
+                        navigate('/adminDashboard');
                         break;
                     case 2:
-                        
-                        navigate('/adminDashboard');
+                        navigate('/homepage');
                         break;
                     default:
                         alert("User Role Error");

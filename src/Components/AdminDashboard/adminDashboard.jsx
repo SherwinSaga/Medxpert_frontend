@@ -51,6 +51,9 @@ function AdminDashboard() {
   //negative med
   const [negativeMed, setNegativeMed] = useState([]);
 
+  //reports
+  const [reports, setReports] = useState([]);
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -106,6 +109,15 @@ function AdminDashboard() {
       });
   }, []);
   
+  //reports
+  useEffect(() => {
+    fetch('http://localhost:8080/report')
+      .then(response => response.json())
+      .then(data => setReports(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
 
   //add medicine 
   const handleSubmit = (event) => {
@@ -133,6 +145,45 @@ function AdminDashboard() {
       console.error('Error:', error);
     });
 
+
+    window.location.reload();
+  };
+
+  const handleclickRemove = (reviewID) => {
+    fetch(`http://localhost:8080/report/delete_review/${reviewID}`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to delete report');
+      }
+      
+      return response.text();
+    })
+    .then(() => {
+      
+      fetchReports();
+      console.log('Report deleted successfully');
+    })
+    .catch(error => {
+      console.error('Error deleting report:', error);
+    });
+  };
+  
+
+  const handleclickIgnore = (reportId) => {
+    fetch(`http://localhost:8080/report/ignore/${reportId}`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to ignore report');
+    }
+    console.log('Report ignored successfully');
+    })
+    .catch(error => {
+      console.error('Error ignoring report:', error);
+    });
 
     window.location.reload();
   };
@@ -236,79 +287,40 @@ function AdminDashboard() {
           
         </div>
 
+
         <div className="center-panel" style={{ flex: '1', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', backgroundColor: '#fff' }}>
+        <MDBTypography tag="h4" className="mb-0">Reviews reported by users<br/></MDBTypography>
           <section>
             <MDBContainer className="py-2">
               <MDBRow className="justify-content-center">
-                <MDBCol md="12" lg="10">
+                {reports.map((report, index) => (
+                 <MDBCol key={index} md="12" lg="10">
                   <MDBCard className="text-dark w-100">
-
                     <MDBCardBody className="p-4">
-                      <MDBTypography tag="h4" className="mb-0">
-                        Spam Comments
-                      </MDBTypography>
-                      <p className="fw-light mb-4 pb-2">
-                        Latest Flag Comments by users
-                      </p>
-
                       <div className="d-flex flex-start">
                         <div>
                           <MDBTypography tag="h6" className="fw-bold mb-1">
-                            Maggie Marsh
+                            {report.reportedReviewID.user_id.usersname}
                           </MDBTypography>
                           <div className="d-flex align-items-center mb-3">
-                          <span className="badge bg-primary mr-2">Ignore</span>
-                          <span className="badge bg-danger">Remove</span>
+                          <span className="badge bg-primary mr-2" onClick={() => handleclickIgnore(report.reportID) }>Ignore</span>
+                          <span className="badge bg-danger"  onClick={() => handleclickRemove(report.reportedReviewID.review_ID)}>Remove</span>
                     </div>
-                          <p>Medicine Name</p>
+                          <p>{report.reportedReviewID.medicine_id.medicine_Name}</p>
                           <div className="d-flex align-items-center mb-3">
                             <p className="mb-0">
-                              March 07, 2021
+                            {report.reportedReviewID.reviewdate}
                             </p>
                           </div>
                           <p className="mb-0">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown
-                            printer took a galley of type and scrambled it.
+                            {report.reportedReviewID.feedback}
                           </p>
                         </div>
                       </div>
                     </MDBCardBody>
-
-                    <hr className="my-0" />
-
-                    <MDBCardBody className="p-4">
-                      <div className="d-flex flex-start">
-                        <div>
-                          <MDBTypography tag="h6" className="fw-bold mb-1">
-                            Lara Stewart
-                          </MDBTypography>
-                          <span className="badge bg-primary mr-2">Ignore</span>
-                          <span className="badge bg-danger">Remove</span>
-                          <p>Medicine Name</p>
-                          <div className="d-flex align-items-center mb-3">
-                            <p className="mb-0">
-                              March 15, 2021
-                            </p>
-                          </div>
-                          <p className="mb-0">
-                            Contrary to popular belief, Lorem Ipsum is not simply
-                            random text. It has roots in a piece of classical Latin
-                            literature from 45 BC, making it over 2000 years old.
-                            Richard McClintock, a Latin professor at Hampden-Sydney
-                            College in Virginia, looked up one of the more obscure
-                            Latin words, consectetur, from a Lorem Ipsum passage, and
-                            going through the cites.
-                          </p>
-                        </div>
-                      </div>
-                    </MDBCardBody>
-
-                    
-                    
                   </MDBCard>
                 </MDBCol>
+                ))}
               </MDBRow>
             </MDBContainer>
           </section>
@@ -353,7 +365,7 @@ function AdminDashboard() {
             <MDBCard>
               <MDBListGroup flush>
                 <MDBListGroupItem>Total Reviews: {reviewCount}</MDBListGroupItem>
-                <MDBListGroupItem>Total Reports: {/* to do */}</MDBListGroupItem>
+                
               </MDBListGroup>
             </MDBCard>
             </MDBCardBody>

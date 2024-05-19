@@ -47,8 +47,6 @@ function Medicine_Card(){
             rating: rating,
             reviewdate: reviewdate
         };
-        console.log(user_id);
-        console.log(user_id);
         
         fetch(`http://localhost:8080/reviews/add_review?User_id=${user_id}&medicineId=${medicine_id}`, {
             method: 'POST',
