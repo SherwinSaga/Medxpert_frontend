@@ -57,8 +57,9 @@ function Medicine_Card(){
         })
         .then(response => response.json())
         .then(data => {
+            alert("submitted");
             console.log(data);
-            
+            window.location.reload();
         })
         .catch((error) => {
             console.error('Error:', error);
